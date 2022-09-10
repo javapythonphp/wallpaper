@@ -1,0 +1,68 @@
+{
+	"general" :
+	{
+		"properties" :
+		{
+			"backImgFolder" :
+			{
+				"mode" : "fetchall",
+				"order" : 0,
+				"text" : "背景文件夹<br/>(wallpaper folder)",
+				"type" : "directory"
+			},
+			"musicImg" :
+			{
+				"order" : 1,
+				"text" : "频谱文件夹<br/>(wallpaper folder)",
+				"type" : "file"
+			},
+			"opacity":
+			{
+				"max" : 100,
+				"min" : 0,
+				"order" : 2,
+				"text" : "频谱透明度<br/>(Alpha)",
+				"type" : "slider",
+				"value" : 88
+			},
+			"wavecolor":
+			{
+				"order":10,
+				"text":"波纹颜色<br/>",
+				"type":"color",
+				"value":"1 1 1"
+			},
+			"lrccolor":
+			{
+				"order":10,
+				"text":"歌词颜色<br/>",
+				"type":"color",
+				"value":"1 1 1"
+			},
+			"timecolor":
+			{
+				"order":10,
+				"text":"时钟颜色<br/>",
+				"type":"color",
+				"value":"1 1 1"
+			},
+          "showTime" :
+          {
+            "order" : 14,
+            "text" : "时钟可视化效果<br/>(silent effect)",
+            "type" : "bool",
+            "value" : true
+          },
+          "showLrc" :
+          {
+            "order" : 14,
+            "text" : "歌词可视化效果<br/>(silent effect)",
+            "type" : "bool",
+            "value" : true
+          }
+        }
+
+	},
+	"title" : "my wallpaper",
+	"preview" : "preview.jpg"
+}

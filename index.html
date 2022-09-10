@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<script src="plug/js/jquery.min.js"></script>
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	body{
+		height:100vh;
+		width:100vw;
+		overflow: hidden;
+	}
+	#app{
+		height:100%;
+		width:100%;
+	}
+</style>
+<style>
+	@keyframes wave{
+		from{
+			opacity: 1;
+			box-shadow: 0 0 10px 2px aqua;
+		}
+		to{
+			opacity: 0;
+			box-shadow: 0 0 0px 200px aqua;
+		}
+	}
+</style>
+<link rel="stylesheet" href="assets/css/snow.css">
+<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="assets/css/musicWave_module.css">
+<link rel="stylesheet" href="assets/css/background_change_module.css">
+<link rel="stylesheet" href="assets/css/wave_module.css">
+<link rel="stylesheet" href="assets/css/particleTime_module.css">
+<link rel="stylesheet" href="assets/css/musicplayer_module.css">
+<link rel="stylesheet" href="assets/css/showlrc_module.css">
+<body>
+
+	<div id="app" class="app">
+
+		<div class="snow-container"><div id="wrapper"></div></div>
+
+		<!--audio-->
+		<audio id="musicAudio" src="./CloudMusic/1.mp3"></audio>
+		<!--audio-->
+
+		<!--背景流模块-->
+		<div class="background_change_module">
+			<button name="flowStop" class="flowStop">停止</button>
+			<img class="changeImage" src="" alt="">
+			<img class="changeImage" src="" alt="">
+		</div>
+		<!--背景流模块-->
+
+		<!--频谱模块-->
+		<div id="musicWave_module">
+			<img id="musicWave_img" src="1.png" style="display: none" alt="">
+			<canvas id="musicWave"></canvas>
+		</div>
+		<!--频谱模块-->
+
+		<!--粒子时钟-->
+		<div id="particleTime_module">
+			<canvas id="particleTime"></canvas>
+		</div>
+		<!--粒子时钟-->
+
+		<!--粒子歌词-->
+		<div id="showlrc_module">
+			<canvas id="showlrc"></canvas>
+		</div>
+		<!--粒子歌词-->
+
+		<!--播放器-->
+		<div id="music_player" >
+			<div class="select">
+				<input type="file" id="input" multiple="multiple" accept="audio/*">
+				<span id="update">上传</span>
+				<span id="empty">清空</span>
+				<span id="ajax">api</span>
+				<span id="ajax1">update</span>
+			</div>
+			<div class="detail">
+				<div class="top">
+					<div class="top_img">
+						<img src="bg.png" alt="">
+					</div>
+					<div class="top_name_button">
+						<div class="top_name">
+							歌曲名
+						</div>
+						<div class="top_button">
+							<div class="play_left">
+								<i class="fa fa-arrow-left" aria-hidden="true"></i>
+							</div>
+							<div class="play_pause">
+								<i class="fa fa-play" aria-hidden="true"></i>
+							</div>
+							<div class="play_right">
+								<i class="fa fa-arrow-right" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="progress">
+						<div class="progressNow">
+							<div class="icon"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="musicList">
+
+				<div class="item" data-url="./CloudMusic/梅とら - 赤イ花.mp3">
+					<span class="left_bar">
+						<i class="fa fa-play" aria-hidden="true"></i>
+					</span>
+					<span class="blur"></span>
+					<div class="song_num">
+						<p>1</p>
+					</div>
+					<div class="song_img">
+						<img src="bg.png" data-pic="" alt="">
+					</div>
+					<div class="song_name">
+						<p>歌曲名</p>
+					</div>
+					<div class="song_singer">
+						<p>歌手名</p>
+					</div>
+					<div class="delete">
+						<i class="fa fa-trash-o deleteIcon" aria-hidden="true"></i>
+					</div>
+					<div class="lrc" style="display: none"></div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+	<script src="assets/js/musicWave_module.js"></script>
+	<script src="assets/js/background_change_module.js"></script>
+	<script src="assets/js/wave_module.js"></script>
+	<script src="assets/js/particleTime_module.js"></script>
+	<script src="assets/js/musicplayer_module.js"></script>
+	<script src="assets/js/snow.js"></script>
+	<!--使用了musicplayer_module的变量，必须写在下面-->
+	<script src="assets/js/showlrc_module.js"></script>
+	<script src="assets/js/engine.js"></script>
+	<script>
+		var sheet = document.styleSheets[1];
+		console.log(sheet)
+	</script>
+</body>
+</html>

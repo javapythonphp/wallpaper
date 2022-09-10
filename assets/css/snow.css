@@ -1,0 +1,7 @@
+.snow-container{position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index:999;}
+#wrapper {padding:85px 0;width: 100%;max-width: 85px;position:absolute;
+    top:925px;
+    right:250px;
+    z-index:999;
+}

@@ -1,0 +1,109 @@
+{
+  "songs": [{
+    "name": "Stigmata",
+    "id": 26141649,
+    "pst": 0,
+    "t": 0,
+    "ar": [{
+      "id": 16212,
+      "name": "Ceui",
+      "tns": [],
+      "alias": []
+    }],
+    "alia": [],
+    "pop": 95.0,
+    "st": 0,
+    "rt": "",
+    "fee": 0,
+    "v": 12,
+    "crbt": null,
+    "cf": "",
+    "al": {
+      "id": 2396151,
+      "name": "イメージアルバム 穢翼のユースティア 夢想曲(トロイメライ) ~Seeking Asphodelus~",
+      "picUrl": "https://p1.music.126.net/x_65vAAW542TkEulJCEzkQ==/18973172648947230.jpg",
+      "tns": [],
+      "pic_str": "18973172648947230",
+      "pic": 18973172648947230
+    },
+    "dt": 306000,
+    "h": {
+      "br": 320000,
+      "fid": 0,
+      "size": 12270455,
+      "vd": 4300.0
+    },
+    "m": {
+      "br": 192000,
+      "fid": 0,
+      "size": 7362361,
+      "vd": 6800.0
+    },
+    "l": {
+      "br": 128000,
+      "fid": 0,
+      "size": 4908313,
+      "vd": 5456.0
+    },
+    "a": null,
+    "cd": "1",
+    "no": 4,
+    "rtUrl": null,
+    "ftype": 0,
+    "rtUrls": [],
+    "djId": 0,
+    "copyright": 2,
+    "s_id": 0,
+    "mark": 9007199255003136,
+    "originCoverType": 0,
+    "single": 0,
+    "noCopyrightRcmd": null,
+    "mv": 0,
+    "rtype": 0,
+    "rurl": null,
+    "mst": 9,
+    "cp": 663018,
+    "publishTime": 1351008000007
+  }],
+  "privileges": [{
+    "id": 26141649,
+    "fee": 0,
+    "payed": 0,
+    "st": 0,
+    "pl": 320000,
+    "dl": 999000,
+    "sp": 7,
+    "cp": 1,
+    "subp": 1,
+    "cs": false,
+    "maxbr": 999000,
+    "fl": 320000,
+    "toast": false,
+    "flag": 0,
+    "preSell": false,
+    "playMaxbr": 999000,
+    "downloadMaxbr": 999000,
+    "chargeInfoList": [{
+      "rate": 128000,
+      "chargeUrl": null,
+      "chargeMessage": null,
+      "chargeType": 0
+    }, {
+      "rate": 192000,
+      "chargeUrl": null,
+      "chargeMessage": null,
+      "chargeType": 0
+    }, {
+      "rate": 320000,
+      "chargeUrl": null,
+      "chargeMessage": null,
+      "chargeType": 0
+    }, {
+      "rate": 999000,
+      "chargeUrl": null,
+      "chargeMessage": null,
+      "chargeType": 1
+    }]
+  }],
+  "code": 200
+}
