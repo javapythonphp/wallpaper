@@ -1,0 +1,1395 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>my wallpaper</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;		
+		}
+		body{
+			position:absolute;
+			height:1080px;
+			width:1920px;
+			background-image: url( "wallPaper/61531695_p0.jpg");
+			background-size:1920px;
+			background-repeat: no-repeat;
+			overflow: hidden;
+			z-index: -10000000;
+		}
+		#canvas{
+			position:absolute;
+			opacity:0.6;
+			top:780px;
+		}
+		.canvases{
+			position:absolute;
+			opacity:0.88;
+			top:880px;
+		}
+		#begin{
+			position: absolute;
+			top:110px;
+			right:30px;	
+			height:30px;
+			width:80px;
+			border:3px solid  #A9E2E3;	
+			border-radius: 30px;
+			text-align: center;
+			line-height:30px;
+			transition:all 0.6s;
+			opacity: 0.8;
+		}
+		/*play按钮*/		
+		#begin:hover{
+			top:107px;
+			width:115px;
+			right:10px;
+			height:36px;
+			border-color: white;
+		}
+		#begin p{
+			cursor: pointer;
+			position: absolute;
+			left:10px;
+			color:#5272C7;
+			font-family:Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+			font-size: 25px;
+			letter-spacing: 1px;
+			text-align: center;
+			transform: rotate(0deg);
+			transition:all 0.5s;
+			transition-timing-function: ease;
+		}
+		#begin:hover p{
+			color:aqua;
+			left:20px;
+			top:4px;
+			transform: rotate(360deg);
+			letter-spacing: 10px;	
+			font-size: 30px;
+		}
+		/*下一首按钮*/		
+		#next{
+			position: absolute;
+			color:#A6B2FC;
+			font-size: 25px;
+			top:110px;
+			right:150px;	
+			height:30px;
+			width:50px;
+			border:3px solid  white;	
+			border-radius: 30px;
+			text-align: center;
+			line-height:30px;
+			opacity: 0.9;
+			transition:all 0.5s;
+		}
+		#next:hover{
+			border-color:aquamarine;
+			height:50px;
+			top:100px;
+			border-radius: 40px;
+		}
+		#next:hover div{
+			line-height:50px;
+		}
+		/*下一首 框的箭头*/		
+		.rot{
+			transition:all 0.5s;
+		}
+		.rot1{
+			color:red;
+		}		
+		/*媒体*/		
+		.audio{
+			position: absolute;
+			margin: 90px auto;
+			width: 350px;
+			height: 100px;
+			right:-300px;
+			top:-130px;
+			visibility: hidden;
+			opacity: 0;
+			transition:all 1.5s;
+		}
+			.audiot{
+			opacity: 0.3;
+			visibility: visible;
+			right:10px;
+		}
+		/*歌曲容器*/		
+		.nam{
+			position: absolute;
+			top:210px;
+			right:0px;
+			height:295px;
+			width:600px;
+			overflow-y:scroll;
+			overflow-x: hidden;
+			transition: all 1s;
+			color:#151515;
+		}
+		.tr{
+			height:0px;
+		}
+		.cs{
+			top:0px;
+			height:1080px;
+			right:360px;
+		}
+		/*歌曲列表延伸*/
+		#extend{
+			position: absolute;
+			right:225px;
+			top:168px;
+			font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+			font-size:23px;
+			font-weight: 600;
+			color:#4B6567;
+			border: 3px solid #4B6567;
+			border-radius: 10px 10px;
+			letter-spacing:5px;
+			transition:all 1.2s;
+		}
+		#extend:hover{
+			color:#858585;
+		}
+		/*歌曲名div*/		
+		.name{
+			line-height: 25px;
+			position: relative;
+			right:0px;
+			font-size:18px;
+			text-align: right;
+			font-family:"KaiTi";
+			cursor: pointer;
+			display:block;
+			color:inherit;
+			font-weight: 800;
+			opacity: 0.8;
+			transition:all 0.3s;
+			transition-timing-function: linear;
+		}
+		.name:hover{
+			letter-spacing: 2px;
+			font-size: 20px;
+			font-weight: 1000;
+			color:aqua;	
+			opacity:1;
+		}
+		.name:active{
+			color:aliceblue;
+		}
+		/*openlist框*/		
+		#dd{
+			font-family:Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+			border:3px solid black;
+			border-radius: 15px;
+			font-size: 30px;
+			position: absolute;
+			right:15px;
+			top:160px;
+			letter-spacing: 12px;
+			transition:all 1s;
+			opacity: 0.5;
+		}
+		#dd:hover{		
+			letter-spacing:14px;
+			opacity: 0.7;
+			right:8px;	
+			background-color:#434343;
+			color:#ADADAD;
+			border-color:#A2A2A2;
+		}	
+		/*换歌换背景*/     
+		.kuang{
+		visibility: hidden;
+		opacity: 0;
+		transition:all 1s;
+		}
+		.k{
+			visibility: visible;
+			opacity: 0.8;
+		}
+		/*当前播放*/		
+		#nowplay{
+			position:absolute;
+			height:35px;
+			top:70px;
+			right:10px;		
+			font-size: 20px;
+			font-weight: 600;
+			color:antiquewhite;
+			font-family:Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+			text-shadow:6px 6px 7px #E6E6FA;
+			overflow: hidden;
+		}
+		.innow{
+			opacity: 0.6;
+			position: relative;
+			right:0px;
+		}
+		/*正在播放的歌曲名称前面的符号*/		
+		#songbefore{
+			position:absolute;
+			font-size: 30px;
+			font-weight: 800;
+			right:60px;
+			top:67px;
+			opacity:0.6;
+			z-index: 1000;
+			transition:all 0.5s;
+		}
+		/*点击波纹效果*/		
+		.dot {
+			height: 2px;
+			width: 2px;
+			border-radius: 100%;
+			position: absolute;
+			z-index: 0;
+			animation: sploosh 3.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+			opacity: 0.9;
+		}
+		
+		
+			.nam::-webkit-scrollbar {/*滚动条整体样式*/
+				width: 12px;     /*高宽分别对应横竖滚动条的尺寸*/
+				height: 4px;
+			}
+			.nam::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+				border-radius: 4px;
+				-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+				background:#0066A7;
+			}
+			.nam::-webkit-scrollbar-track {/*滚动条里面轨道*/
+				-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+				border-radius: 0;
+				background: rgba(0,0,0,0.1);
+	}
+		</style>
+		<style>
+			@keyframes sploosh {
+				0% {
+					box-shadow: 0 0 0px 0px rgba(66, 166, 223, 0.7);
+					opacity: 0.9;
+			    }
+				100% {
+					box-shadow: 0 0 50px 300px rgba(0, 0, 0, 0);
+					opacity: 0;
+				}
+			}
+	    </style>
+	    
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<!--上为change music的显示隐藏 中为歌曲列表的清空更新 后为在最后添加歌曲 可重复-->	
+<script>
+	
+	function reveal(){
+		var x = document.getElementsByClassName("kuang")[0];
+		if(x.getAttribute("value")=="false"){
+			x.setAttribute("class","kuang k")
+			x.setAttribute("value","true")
+		}
+		else if(x.getAttribute("value")=="true"){
+			x.setAttribute("class","kuang")
+			x.setAttribute("value","false")
+		}		  
+	}
+
+	function upDate(){
+		var name = document.getElementsByClassName("nam")[0];	
+		name.innerHTML = ""
+		var file = document.getElementById("file").files;
+		for(var i=0;i<file.length;i++){						    
+			var newDiv = document.createElement("div");
+			var x = file[i].name;
+			var text = document.createTextNode(x);
+			/*为新增的div添加歌曲名 css修饰 javascript点击换歌事件*/		
+			newDiv.setAttribute("class","name");
+			newDiv.setAttribute("onclick","change(this)");
+			newDiv.appendChild(text);
+			/*-------*/
+			name.appendChild(newDiv); 
+		}	
+		var x = document.getElementsByClassName("kuang")[0];
+		x.setAttribute("class","kuang")
+		x.setAttribute("value","false")
+	}
+
+	function upDate2(){
+		var name = document.getElementsByClassName("nam")[0];	
+		var file = document.getElementById("file").files;
+		for(var i=0;i<file.length;i++){		
+			var newDiv = document.createElement("div");
+			var x = file[i].name;
+			var text = document.createTextNode(x);
+			/*为新增的div添加歌曲名 css修饰 javascript点击换歌事件*/		
+			newDiv.setAttribute("class","name");
+			newDiv.setAttribute("onclick","change(this)");
+			newDiv.appendChild(text);
+			/*-------*/
+			name.appendChild(newDiv); 
+		}	
+		var x = document.getElementsByClassName("kuang")[0];
+		x.setAttribute("class","kuang")
+		x.setAttribute("value","false")
+	}
+
+	function upDate3(){
+		var name = document.getElementsByClassName("nam")[0];	
+		var file = document.getElementById("file").files;
+		var before = name.firstElementChild;
+		for(var i=0;i<file.length;i++){		
+			var newDiv = document.createElement("div");
+			var x = file[i].name;
+			var text = document.createTextNode(x);
+			/*为新增的div添加歌曲名 css修饰 javascript点击换歌事件*/		
+			newDiv.setAttribute("class","name");
+			newDiv.setAttribute("onclick","change(this)");
+			newDiv.appendChild(text);
+			/*-------*/
+			name.insertBefore(newDiv,before);
+			before = newDiv;
+		}	
+		var x = document.getElementsByClassName("kuang")[0];
+		x.setAttribute("class","kuang")
+		x.setAttribute("value","false")
+	}
+	
+</script>
+<!--change wallpaper-->
+<script>
+	
+	function reveal2(){
+		var x = document.getElementsByClassName("kuang")[1];	
+		if(x.getAttribute("value")=="false"){
+			x.setAttribute("class","kuang k")
+			x.setAttribute("value","true")
+		}
+		else if(x.getAttribute("value")=="true"){
+			x.setAttribute("class","kuang")
+			x.setAttribute("value","false")
+		}	
+	}
+
+	function upDatepaper(){
+		var bo = document.getElementsByTagName("body")[0];
+		var file1 = document.getElementById("file1").files;
+		var name = file1[0].name;
+		name = "url('wallPaper/"+name+"')";
+		bo.style['backgroundImage'] = name;
+		var x = document.getElementsByClassName("kuang")[1];
+		x.setAttribute("class","kuang")
+		x.setAttribute("value","false")
+	}
+
+</script>
+<!--更改频谱背景中文件上传框的显隐 改变频谱的代码在产生频谱那里-->
+<script>
+	
+	function reveal3(){
+		var x = document.getElementsByClassName("kuang")[2];	
+		if(x.getAttribute("value")=="false"){
+			x.setAttribute("class","kuang k")
+			x.setAttribute("value","true")
+		}
+		else if(x.getAttribute("value")=="true"){
+			x.setAttribute("class","kuang")
+			x.setAttribute("value","false")
+		}	
+	}
+	
+</script>
+<!--关联歌曲列表容器 点击时隐藏显示-->
+<script>
+	
+	function hiden(){
+		var list = document.getElementsByClassName("nam")[0];
+		if(list.getAttribute("value")=="true"){
+			list.setAttribute("class","nam tr");
+			list.setAttribute("value","false");
+		}
+		else if(list.getAttribute("value")=="false"){
+			list.removeAttribute("class");
+			list.setAttribute("class","nam")
+			list.setAttribute("value","true");
+		}
+	}	
+	
+</script>
+<!--弹跳特效 （对追加元素无效）！！！！已经弃用！！！！！！-->
+<script>
+/* $(document).ready(function(){			
+	$(".name").click(function(){
+		var x = $(this)
+		x.css({"right":"20px"})
+		setTimeout(function(){
+		x.css({"right":"0px"});	 
+		},300);
+		setTimeout(function(){
+		x.css({"right":"13px"});	 
+		},600);
+		setTimeout(function(){
+		x.css({"right":"0px"});	 
+		},900);
+		setTimeout(function(){
+		x.css({"right":"6px"});	 
+		},1200)
+		setTimeout(function(){
+		x.css({"right":"0px"});	 
+		},1500)
+		});
+	});*/
+</script>
+<!--实现随机播放-->	
+<script>
+	
+	function auto(){
+		var song = document.getElementsByClassName("nam")[0];
+		var array = song.children;
+		var index = Math.round(Math.random()*array.length); 	
+		var e = new Event("click");		
+		array[index].dispatchEvent(e);
+	}
+	
+</script>
+<!--wallpaper Engine无法记录键盘事件 已弃用-->	
+<script>
+	/* document.onkeypress = function(e){
+		var audio = document.getElementsByClassName("audio")[0];
+		var num = e.keyCode;
+		if(num==45){
+		if(audio.paused){audio.play()}
+		else{audio.pause()} 
+	}
+	}*/
+</script>
+<!--自动切换下一首歌-->	
+<script>
+	
+	function next(){
+		var song = document.getElementsByClassName("nam")[0];
+		var array = song.children;
+		var index = Math.round(Math.random()*array.length); 	
+		var e = new Event("click");		
+		array[index].dispatchEvent(e);
+		var rot = document.getElementsByClassName("rot")[0];
+		rot.setAttribute("class","rot rot1");
+		setTimeout(function(){
+			rot.setAttribute("class","rot");
+		},500)
+	}	
+	
+</script>
+
+<!--当前播放歌曲前面的符号根据歌的暂停与否调整样式-->	
+<script>
+	
+	setInterval(function(){
+		judge();
+	},30);
+	
+	function judge(){
+		var point = document.getElementById("songbefore");
+		var audio = document.getElementsByClassName("audio")[0];
+		if(audio.paused){
+			point.innerHTML= "♫||";
+			point.style['color'] = "red"
+		}
+		else{
+			point.innerHTML= "♫▶";
+			point.style['color'] = "aqua"
+		}
+	}
+	
+</script>
+<!--点击summary时，将上传框全部隐藏-->	
+<script>
+
+	function closeall(){
+		var x1 = document.getElementsByClassName("kuang")[0];	
+		var x2 = document.getElementsByClassName("kuang")[1];	
+		var x3 = document.getElementsByClassName("kuang")[2];	
+		x1.setAttribute("class","kuang")
+		x1.setAttribute("value","false")
+		x2.setAttribute("class","kuang")
+		x2.setAttribute("value","false")
+		x3.setAttribute("class","kuang")
+		x3.setAttribute("value","false")
+	}
+
+</script>
+<script>
+	
+	var sls = true;
+	function bbb(mine){
+		var x = document.getElementsByClassName("nam")[0];
+		
+	 	if(sls){
+			x.setAttribute("class","nam cs");
+			mine.style['right'] = "20px"
+			mine.style.top = "220px"
+			sls = false;
+		}
+		else{
+			x.setAttribute("class","nam");			
+			mine.style['right'] = "225px"
+			mine.style.top = "168px"
+			sls = true;
+		}
+	}
+	
+</script>	
+</head>
+<body>	
+<div onClick = "bbb(this)" id="extend">extend</div>
+<!--时钟-->
+	<div class="clock" style="position: absolute;opacity: 0.25;z-index: -1000;left:300px;top:220px;">
+		<script  src="js/react.min.js"></script>
+		<script  src="js/react-dom.min.js"></script>
+		<script type="text/javascript" src="js/index1.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+	</div>
+<!--当前播放-->
+	<div id="songbefore">♫▶</div>
+	<div id = "nowplay"><span class="innow">none</span></div>
+	<details>	
+	<summary style="display: block;position: absolute" onclick="closeall()"></summary>
+		<!--歌曲切换-->	
+		<div style="position: absolute;left:20px;" onClick="reveal()">change music</div>
+		<div style="position: absolute;left:120px;" class="kuang" value = "false">	
+			<input type="file" id="file" name="myfile" multiple="multiple"  accept="audio/*"/>
+			<input id="input2" type="button" onclick="upDate()" value="更新" />
+			<input id="input22" type="button" onclick="upDate2()" value="append" />
+			<input id="input33" type="button" onclick="upDate3()" value="insert" />
+		</div>	
+		<!--背景切换-->
+		<div style="position: absolute;top:20px;left:20px;" onClick="reveal2()">change wallpaper</div>
+		<div style="position: absolute;left:135px;top:20px;" class="kuang" value="false">	
+			<input type="file" id="file1" name="myfile1"/>
+			<input id="input3" type="button" onclick="upDatepaper()" value="上传" />
+		</div>	
+		<!--频谱背景图片切换-->
+		<div style="position: absolute;top:40px;left:20px;" onClick="reveal3()">change wallpaper</div>
+		<div style="position: absolute;left:135px;top:40px;" class="kuang" value="false">	
+			<input type="file" id="file2" name="myfile2"/>
+			<input id="input4" type="button" onclick="upDatepinpupaper()" value="上传" />
+		</div>	
+	</details>	
+<!--频谱背景图片-->	
+	<img src="picture/1.png" id="img" style="position: absolute;display: none;" />
+<!--播放器对象-->	
+	<audio class= "audio" src="https://api.quyihuang.cn/couldmusiceasy/type=url?id=40257852" onended = "auto()" controls autoplay></audio>
+<!--频谱画布-->	
+	<canvas id="canvas"></canvas>
+<!--频谱未播放-->
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+    <canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>
+	<canvas class="canvases"></canvas>	
+<!--开始歌曲按钮-->	
+	<div id= "begin">
+		<p>Play</p>
+	</div>
+<!--下一首-->
+	<div id= "next" onclick = "next()">
+		<div id="one" style="float: left;">♫</div>
+		<div class="rot" >↓↓</div>
+	</div>
+<!--dd为列表开关 name为歌曲列表容器-->
+	<div id="dd" onclick="hiden()">openlist</div>
+	<div class="nam" value="true">
+		<div class = "name" onclick="change(this)">夏.mp3</div>
+	</div>	
+<!--内含频谱 播放暂停事件 点击歌曲切换事件-->	
+<script>	
+	/*是否静音是可视化*/
+	var isrun = true;
+	
+	var audio = document.getElementsByClassName("audio")[0];
+	var img = document.getElementById("img");		
+	/*歌曲切换 因为自动播放 所以播放器也显示*/		
+	function change(recent){
+	/*取得点击的歌曲*/
+	var now = recent.innerHTML;
+	/*改变歌词显示歌曲*/
+	document.getElementsByClassName("innow")[0].textContent = now;
+	/*改变歌词长度*/
+	document.getElementById("songbefore").style['right'] = document.getElementById("nowplay").offsetWidth+10+"px";  
+	/*弹跳*/ 
+	bh();
+	/*开始播放*/
+	audio.src ='CloudMusic/'+recent.innerHTML; 
+	audio.load();
+	audio.autoplay = "true";
+	audio.setAttribute("class","audio audiot");
+		
+/*歌曲名称弹跳特效*/		   
+	function bh(){
+		recent.style['right'] = "28px";
+		setTimeout(function(){recent.style['right'] = "0px";},300)
+		setTimeout(function(){recent.style['right'] = "18px";},600)
+		setTimeout(function(){recent.style['right'] = "0px";},900)
+		setTimeout(function(){recent.style['right'] = "10px";},1200)
+		setTimeout(function(){recent.style['right'] = "0px";},1500)
+		setTimeout(function(){recent.style['right'] = "5px";},1800)
+		setTimeout(function(){recent.style['right'] = "0px";},2100)
+		}
+	}	
+	
+/*播放器的隐藏显示*/		     
+	var begin = document.getElementById("begin");
+	begin.onclick = function(){
+		if(audio.paused){
+			audio.play();
+			audio.setAttribute("class","audio audiot");
+		}
+		else{
+			audio.pause();
+			audio.removeAttribute("class");
+			audio.setAttribute("class","audio");
+		}
+	}	
+
+/*频谱代码*/			
+	var context = new AudioContext();
+	var meiti = context.createMediaElementSource(audio);
+	var fenxiqi = context.createAnalyser();
+	meiti.connect(fenxiqi);
+	fenxiqi.connect(context.destination);
+	var pen = canvas.getContext('2d');
+	canvas.width = "1920";
+	canvas.height = "300";
+	/*var color = pen.createLinearGradient(0, 0,1000, 200);
+	color.addColorStop(0, '#21E4E1');
+	color.addColorStop(1, '#A9E2E3');  */
+	var pinpu = new Uint8Array(fenxiqi.frequencyBinCount)
+/*默认频谱高度和数量*/		
+	var mrcount = 100;
+	var mrheight = 90;	
+	var mrleft = 0;
+	var mrright = 0;
+	var time;
+	var img2;	
+	var maodianLeft = 0;
+	var maodianRight = 0;
+	var bc = 20;
+	/*未播放时*/
+	var canvases = document.getElementsByClassName("canvases");
+	var size = canvases.length;
+	var penes = new Object();
+	var hhh = function(height,len){
+		this.point=0;
+		this.flag = 0;
+		this.len = len;
+		this.height = height;
+	}
+	var time1;
+	var time2;
+	var bc2 = 48;
+	var mrcount2 = 1920/bc2;
+	
+	function draw(){
+		pen.clearRect(0,0,1920,300)
+		pen.drawImage(img,-maodianLeft,-maodianRight)
+		fenxiqi.getByteFrequencyData(pinpu);
+		var n = Math.round(pinpu.length/mrcount);
+		for(var i=0;i<mrcount;i++){
+			var len = pinpu[n*i];
+			pen.clearRect(bc*i,0,bc-1,300-(len*mrheight/100));
+			pen.clearRect(bc*i+bc-1,0,1,300);
+		}		
+	}
+/*静止时 1为新建高度对象 两个时间数组 并给每个canvas调用函数*/	
+	function draw1(){
+		h = new Object();
+		time1 = new Array();
+		time2 = new Array();
+		for(var i=0;i<size;i++){
+			h[i] = new hhh(300,20);
+			draw2(i)
+		}
+	}
+	function draw3(){
+		h = new Object();
+		time1 = new Array();
+		time2 = new Array();
+		for(var i=size-1;i>=0;i--){
+			h[i] = new hhh(300,20);
+			draw4(i)
+		}
+	}
+/*ii参数指定了两个时间数组的下标 canvas的下标 高度对象的下标 对每个canvas依次设置长度为等差数列的延迟*/		
+	function draw2(ii){
+		time1[ii] = setTimeout(function(){	
+			 time2[ii] = setInterval(function(){
+				/*波浪算法主体*/ 
+				if(h[ii].flag==0){
+					if(h[ii].height>=80)
+						h[ii].point+=0.16;
+					if(h[ii].height<=80){
+						h[ii].point-=0.16;
+					}
+					h[ii].height-=h[ii].point;
+					if(h[ii].height<=0){
+						h[ii].flag=1;
+						h[ii].point=0;
+					}
+				}			
+				else if(h[ii].flag==1){
+					if(h[ii].height>=80)
+						h[ii].point-=0.16;
+					if(h[ii].height<=80){
+						h[ii].point+=0.16;
+					}
+					h[ii].height+=h[ii].point;
+					if(h[ii].height>=160){
+						h[ii].flag=0;
+						h[ii].point=0;
+					}
+				}
+				 
+				penes[ii].drawImage(img,-maodianLeft-ii*bc2,-maodianRight)
+				penes[ii].clearRect(0,0,bc2,h[ii].height)	
+			},40)	
+		},ii*100)	
+	}
+	
+	
+	function draw4(ii){
+		time1[ii] = setTimeout(function(){	
+			 time2[ii] = setInterval(function(){
+				/*波浪算法主体*/ 
+				if(h[ii].flag==0){
+					if(h[ii].height>=80)
+						h[ii].point+=0.16;
+					if(h[ii].height<=80){
+						h[ii].point-=0.16;
+					}
+					h[ii].height-=h[ii].point;
+					if(h[ii].height<=0){
+						h[ii].flag=1;
+						h[ii].point=0;
+					}
+				}			
+				else if(h[ii].flag==1){
+					if(h[ii].height>=80)
+						h[ii].point-=0.16;
+					if(h[ii].height<=80){
+						h[ii].point+=0.16;
+					}
+					h[ii].height+=h[ii].point;
+					if(h[ii].height>=160){
+						h[ii].flag=0;
+						h[ii].point=0;
+					}
+				}
+				 
+				penes[ii].drawImage(img,-maodianLeft-ii*bc2,-maodianRight)
+				penes[ii].clearRect(0,0,bc2,h[ii].height)	
+			},40)	
+		},size*100-ii*100)	
+	}
+	
+	
+/*图片加载后，画布一持续绘制 初始化画布二*/	
+	img.onload = function(){
+		time = setInterval(function(){				
+				draw();
+		},25)
+		
+		for(var i=0;i<size;i++){
+			canvases[i].width = bc2+"";
+			canvases[i].height = "200";
+			canvases[i].style['left'] = i*bc2+"px";	
+			penes[i] = canvases[i].getContext("2d");
+	    }
+	}
+/*flag防止反复调用draw1 图片坐标移动和音频响应判断放一起*/   	
+	var flag = 1;
+	setInterval(function(){
+		if(maodianLeft>=3840){
+			maodianLeft = 0;
+		}
+		maodianLeft+=1;
+		
+		if(!audio.paused){
+			for(var i=0;i<Math.ceil(1920/bc2);i++){
+				clearTimeout(time1[i]);
+				clearInterval(time2[i]);
+				penes[i].clearRect(0,0,bc2,200);
+			}
+			flag = 1;
+		}
+		if(audio.paused&&flag==1&&isrun){
+			draw1();
+			flag=0;
+		}
+	},25)
+/*反bug 在频谱停止动画 运作时 每隔一分半重绘制一次 防止波浪不连续*/	
+	var LeftOrRight = 0/*波浪左或右，默认为向右*/
+	setInterval(function(){
+		if(audio.paused&&isrun){
+			for(var i=0;i<Math.ceil(1920/bc2);i++){
+				clearTimeout(time1[i]);
+				clearInterval(time2[i]);
+				penes[i].clearRect(0,0,bc2,200);
+			}
+            if(LeftOrRight==0){
+				draw3();
+				LeftOrRight = 1;
+			}
+			else if(LeftOrRight==1){
+				draw1();
+				LeftOrRight = 0;
+			}
+			flag=0;
+		}
+	},60000)
+/*鼠标移动事件*/	
+/*	document.onmousemove = function(e){       //太卡了，爬
+		mrleft = e.clientX/10;
+		mrright = e.clientY/10;
+		
+		var clock = document.getElementsByClassName("clock")[0];
+		clock.style['left'] = 300+e.clientX/35+"px";
+		clock.style['top'] = 220+e.clientY/35+"px";	
+	}*/
+/*临时更换频谱背景图*/
+	function upDatepinpupaper(){
+	/*新建img元素*/
+		var file2 = document.getElementById("file2").files;
+		var name = file2[0].name;
+		name = "picture/" + name;
+		var x = document.getElementsByClassName("kuang")[2];
+		x.setAttribute("class","kuang")
+		x.setAttribute("value","false")  
+		img2 = document.createElement("img");
+		img2.setAttribute("src",name);
+		img2.style['display'] = "none";
+		img2.style['position'] = "absolute";
+		/*图片加载好后新建填充，清除上一个，再重新循环*/
+		img2.onload = function(){
+			img = img2;
+		}
+	}
+/*wallpaper 控制主体*/
+	window.wallpaperPropertyListener = {
+		applyUserProperties: function(properties) {
+			/*静音可视化*/
+			if (properties.isRun) {
+				isrun = properties.isRun.value;
+			}
+			/*输入音量*/
+			if (properties.volumn) {
+				mrheight = properties.volumn.value;
+			}
+			/**/
+            if (properties.opacity1) {
+				for(var i=0;i<mrcount2;i++){
+					canvases[i].style['opacity'] = properties.opacity1.value/100;
+				}
+			}
+			/*频谱透明度*/
+			if(properties.opacity){
+				canvas.style['opacity'] = properties.opacity.value/100;
+			}
+			/*时钟透明度*/
+			if(properties.opacityclock){
+				document.getElementsByClassName("clock")[0].style.opacity = properties.opacityclock.value/100;
+			}
+			/*歌曲字体颜色*/
+			if(properties.color1){
+				var str = properties.color1.value;
+				var song = document.getElementsByClassName("nam")[0];
+				var rgb = str.split(" ");
+				var re = "rgb("+rgb[0]*256+","+rgb[1]*256+","+rgb[2]*256+")"
+				song.style.color = re;
+			}
+			if(properties.maodianL){
+				maodianLeft = properties.maodianL.value;
+			}
+			if(properties.maodianR){
+				maodianRight = properties.maodianR.value;
+			}
+			if(properties.backImg){
+			/*首先判断文件是否为空*/	
+				if(properties.backImg.value){
+					/*取得文件名*/	
+					var x = properties.backImg.value;
+					var re = "";
+					for(var i=x.length-1;i>=0;i--){
+						if(x[i]!="/"){
+							re+=x[i]
+						}
+						else{
+							break;
+						}
+					}
+					var name = "";
+					for(var i=re.length-1;i>=0;i--){
+						name+=re[i];
+					}
+					var bo = document.getElementsByTagName("body")[0];
+					name = "url('wallPaper/"+name+"')";
+					bo.style['backgroundImage'] = name;
+				}	
+			}
+			if(properties.pinpuImg){
+				if(properties.pinpuImg.value){
+					function upDatepinpupaper2(){
+						/*取得文件名*/	
+						var x = properties.pinpuImg.value;
+						var re = "";
+						for(var i=x.length-1;i>=0;i--){
+							if(x[i]!="/"){
+								re+=x[i]
+							}
+							else{
+								break;
+							}
+						}
+						var name = "";
+						for(var i=re.length-1;i>=0;i--){
+							name+=re[i];
+						}
+						/*新建img元素*/
+						name = "picture/" + name;   
+						img2 = document.createElement("img");
+						img2.setAttribute("src",name);
+						img2.style['display'] = "none";
+						img2.style['position'] = "absolute";
+						/*图片加载好后新建填充，清除上一个，再重新循环*/
+						img2.onload = function(){
+							img = img2;
+						}
+					}
+				upDatepinpupaper2();
+				}
+			}
+			if(properties.bwcolor){
+				var str = properties.bwcolor.value;
+				var rgb = str.split(" ");
+				var re = "rgba("+Math.round(rgb[0]*256)+","+Math.round(rgb[1]*256)+","+Math.round(rgb[2]*256)+",0.7)"
+				var css = document.styleSheets[1];
+				css.deleteRule(0);
+				css.insertRule("@keyframes sploosh {0% {box-shadow: 0 0 0px 0px "+re+";opacity: 0.6;}100% {box-shadow: 0 0 40px 300px rgba(0, 0, 0, 0);opacity: 0;}}")
+			}
+
+		}
+	}
+
+
+
+</script>	
+<!-- sakura shader 樱花飘落固定模板-->
+<script src="js/index.js"></script>
+<canvas id="sakura" style="position: absolute;opacity:0.27;z-index: -1;"></canvas>
+<script id="sakura_point_vsh" type="x-shader/x_vertex">
+	uniform mat4 uProjection;
+	uniform mat4 uModelview;
+	uniform vec3 uResolution;
+	uniform vec3 uOffset;
+	uniform vec3 uDOF;  //x:focus distance, y:focus radius, z:max radius
+	uniform vec3 uFade; //x:start distance, y:half distance, z:near fade start
+
+	attribute vec3 aPosition;
+	attribute vec3 aEuler;
+	attribute vec2 aMisc; //x:size, y:fade
+
+	varying vec3 pposition;
+	varying float psize;
+	varying float palpha;
+	varying float pdist;
+
+	//varying mat3 rotMat;
+	varying vec3 normX;
+	varying vec3 normY;
+	varying vec3 normZ;
+	varying vec3 normal;
+
+	varying float diffuse;
+	varying float specular;
+	varying float rstop;
+	varying float distancefade;
+
+	void main(void) {
+	// Projection is based on vertical angle
+	vec4 pos = uModelview * vec4(aPosition + uOffset, 1.0);
+	gl_Position = uProjection * pos;
+	gl_PointSize = aMisc.x * uProjection[1][1] / -pos.z * uResolution.y * 0.5;
+
+	pposition = pos.xyz;
+	psize = aMisc.x;
+	pdist = length(pos.xyz);
+	palpha = smoothstep(0.0, 1.0, (pdist - 0.1) / uFade.z);
+
+	vec3 elrsn = sin(aEuler);
+	vec3 elrcs = cos(aEuler);
+	mat3 rotx = mat3(
+	1.0, 0.0, 0.0,
+	0.0, elrcs.x, elrsn.x,
+	0.0, -elrsn.x, elrcs.x
+	);
+	mat3 roty = mat3(
+	elrcs.y, 0.0, -elrsn.y,
+	0.0, 1.0, 0.0,
+	elrsn.y, 0.0, elrcs.y
+	);
+	mat3 rotz = mat3(
+	elrcs.z, elrsn.z, 0.0, 
+	-elrsn.z, elrcs.z, 0.0,
+	0.0, 0.0, 1.0
+	);
+	mat3 rotmat = rotx * roty * rotz;
+	normal = rotmat[2];
+
+	mat3 trrotm = mat3(
+	rotmat[0][0], rotmat[1][0], rotmat[2][0],
+	rotmat[0][1], rotmat[1][1], rotmat[2][1],
+	rotmat[0][2], rotmat[1][2], rotmat[2][2]
+	);
+	normX = trrotm[0];
+	normY = trrotm[1];
+	normZ = trrotm[2];
+
+	const vec3 lit = vec3(0.6917144638660746, 0.6917144638660746, -0.20751433915982237);
+
+	float tmpdfs = dot(lit, normal);
+	if(tmpdfs < 0.0) {
+	normal = -normal;
+	tmpdfs = dot(lit, normal);
+	}
+	diffuse = 0.4 + tmpdfs;
+
+	vec3 eyev = normalize(-pos.xyz);
+	if(dot(eyev, normal) > 0.0) {
+	vec3 hv = normalize(eyev + lit);
+	specular = pow(max(dot(hv, normal), 0.0), 20.0);
+	}
+	else {
+	specular = 0.0;
+	}
+
+	rstop = clamp((abs(pdist - uDOF.x) - uDOF.y) / uDOF.z, 0.0, 1.0);
+	rstop = pow(rstop, 0.5);
+	//-0.69315 = ln(0.5)
+	distancefade = min(1.0, exp((uFade.x - pdist) * 0.69315 / uFade.y));
+	}
+</script>
+<script id="sakura_point_fsh" type="x-shader/x_fragment">
+	#ifdef GL_ES
+	//precision mediump float;
+	precision highp float;
+	#endif
+
+	uniform vec3 uDOF;  //x:focus distance, y:focus radius, z:max radius
+	uniform vec3 uFade; //x:start distance, y:half distance, z:near fade start
+
+	const vec3 fadeCol = vec3(0.08, 0.03, 0.06);
+
+	varying vec3 pposition;
+	varying float psize;
+	varying float palpha;
+	varying float pdist;
+
+	//varying mat3 rotMat;
+	varying vec3 normX;
+	varying vec3 normY;
+	varying vec3 normZ;
+	varying vec3 normal;
+
+	varying float diffuse;
+	varying float specular;
+	varying float rstop;
+	varying float distancefade;
+
+	float ellipse(vec2 p, vec2 o, vec2 r) {
+	vec2 lp = (p - o) / r;
+	return length(lp) - 1.0;
+	}
+
+	void main(void) {
+	vec3 p = vec3(gl_PointCoord - vec2(0.5, 0.5), 0.0) * 2.0;
+	vec3 d = vec3(0.0, 0.0, -1.0);
+	float nd = normZ.z; //dot(-normZ, d);
+	if(abs(nd) < 0.0001) discard;
+
+	float np = dot(normZ, p);
+	vec3 tp = p + d * np / nd;
+	vec2 coord = vec2(dot(normX, tp), dot(normY, tp));
+
+	//angle = 15 degree
+	const float flwrsn = 0.28819045102521;
+	const float flwrcs = 0.965925826289068;
+	mat2 flwrm = mat2(flwrcs, -flwrsn, flwrsn, flwrcs);
+	vec2 flwrp = vec2(abs(coord.x), coord.y) * flwrm;
+
+	float r;
+	if(flwrp.x < 0.0) {
+	r = ellipse(flwrp, vec2(0.065, 0.024) * 0.5, vec2(0.36, 0.96) * 0.5);
+	}
+	else {
+	r = ellipse(flwrp, vec2(0.065, 0.024) * 0.5, vec2(0.58, 0.96) * 0.5);
+	}
+
+	if(r > rstop) discard;
+	//花瓣颜色
+	vec3 col = mix(vec3(1.0, 0.9, 0.75), vec3(1.0, 0.9, 0.87), r);
+	float grady = mix(0.0, 1.0, pow(coord.y * 0.5 + 0.5, 0.35));
+	col *= vec3(3.0, grady, grady);
+	col *= mix(0.9, 1.0, pow(abs(coord.x), 1.0));
+	col = col * diffuse + specular;
+
+	col = mix(fadeCol, col, distancefade);
+
+	float alpha = (rstop > 0.001)? (0.5 - r / (rstop * 2.0)) : 1.0;
+	alpha = smoothstep(0.0, 1.0, alpha) * palpha;
+
+	gl_FragColor = vec4(col * 3.0, alpha);
+	}
+</script>
+<!-- effects -->
+<script id="fx_common_vsh" type="x-shader/x_vertex">
+	uniform vec3 uResolution;
+	attribute vec2 aPosition;
+
+	varying vec2 texCoord;
+	varying vec2 screenCoord;
+
+	void main(void) {
+	gl_Position = vec4(aPosition, 0.0, 1.0);
+	texCoord = aPosition.xy * 0.5 + vec2(0.5, 0.5);
+	screenCoord = aPosition.xy * vec2(uResolution.z, 1.0);
+	}
+</script>
+<script id="bg_fsh" type="x-shader/x_fragment">
+	#ifdef GL_ES
+	//precision mediump float;
+	precision highp float;
+	#endif
+
+	uniform vec2 uTimes;
+
+	varying vec2 texCoord;
+	varying vec2 screenCoord;
+
+	void main(void) {
+	vec3 col;
+	float c;
+	vec2 tmpv = texCoord * vec2(0.8, 1.0) - vec2(0.95, 1.0);
+	c = exp(-pow(length(tmpv) * 1.2, 2.0));
+	col = mix(vec3(0.05, 0.0, 0.03), vec3(0.96,0.91, 1.0) * 1.5, c);
+	gl_FragColor = vec4(col * 0.5, 1.0);
+	}
+</script>
+<script id="fx_brightbuf_fsh" type="x-shader/x_fragment">
+	#ifdef GL_ES
+	//precision mediump float;
+	precision highp float;
+	#endif
+	uniform sampler2D uSrc;
+	uniform vec2 uDelta;
+
+	varying vec2 texCoord;
+	varying vec2 screenCoord;
+
+	void main(void) {
+	vec4 col = texture2D(uSrc, texCoord);
+	gl_FragColor = vec4(col.rgb * 2.0 - vec3(0.5), 1.0);
+	}
+</script>
+<script id="fx_dirblur_r4_fsh" type="x-shader/x_fragment">
+	#ifdef GL_ES
+	//precision mediump float;
+	precision highp float;
+	#endif
+	uniform sampler2D uSrc;
+	uniform vec2 uDelta;
+	uniform vec4 uBlurDir; //dir(x, y), stride(z, w)
+
+	varying vec2 texCoord;
+	varying vec2 screenCoord;
+
+	void main(void) {
+	vec4 col = texture2D(uSrc, texCoord);
+	col = col + texture2D(uSrc, texCoord + uBlurDir.xy * uDelta);
+	col = col + texture2D(uSrc, texCoord - uBlurDir.xy * uDelta);
+	col = col + texture2D(uSrc, texCoord + (uBlurDir.xy + uBlurDir.zw) * uDelta);
+	col = col + texture2D(uSrc, texCoord - (uBlurDir.xy + uBlurDir.zw) * uDelta);
+	gl_FragColor = col / 7.5;
+	}
+</script>
+<!-- effect fragment shader template -->
+<script id="fx_common_fsh" type="x-shader/x_fragment">
+	#ifdef GL_ES
+	//precision mediump float;
+	precision highp float;
+	#endif
+	uniform sampler2D uSrc;
+	uniform vec2 uDelta;
+
+	varying vec2 texCoord;
+	varying vec2 screenCoord;
+
+	void main(void) {
+	gl_FragColor = texture2D(uSrc, texCoord);
+	}
+</script>
+<!-- post processing -->
+<script id="pp_final_vsh" type="x-shader/x_vertex">
+	uniform vec3 uResolution;
+	attribute vec2 aPosition;
+	varying vec2 texCoord;
+	varying vec2 screenCoord;
+	void main(void) {
+	gl_Position = vec4(aPosition, 0.0, 1.0);
+	texCoord = aPosition.xy * 0.5 + vec2(0.5, 0.5);
+	screenCoord = aPosition.xy * vec2(uResolution.z, 1.0);
+	}
+</script>
+<script id="pp_final_fsh" type="x-shader/x_fragment">
+	#ifdef GL_ES
+	//precision mediump float;
+	precision highp float;
+	#endif
+	uniform sampler2D uSrc;
+	uniform sampler2D uBloom;
+	uniform vec2 uDelta;
+	varying vec2 texCoord;
+	varying vec2 screenCoord;
+	void main(void) {
+	vec4 srccol = texture2D(uSrc, texCoord) * 2.0;
+	vec4 bloomcol = texture2D(uBloom, texCoord);
+	vec4 col;
+	col = srccol + bloomcol * (vec4(1.0) + srccol);
+	col *= smoothstep(1.0, 0.0, pow(length((texCoord - vec2(0.5)) * 2.0), 1.2) * 0.5);
+	col = pow(col, vec4(0.45454545454545)); //(1.0 / 2.2)
+
+	gl_FragColor = vec4(col.rgb, 1.0);
+	gl_FragColor.a = 1.0;
+	}
+</script>
+
+
+<!--点击屏幕显示文字-->	
+<script>
+/*	var a_idx = 0,
+	b_idx = 0;
+	c_idx = 0;*/
+	document.getElementsByTagName("body")[0].onclick = function(e) {
+		/*判断顶层对象 为其他元素是不产生字体*/	  /*太卡了不要了*/ 				
+		if(e.target.tagName=="CANVAS"){
+		/*	var ii = 0;
+			var i;
+			var a = new Array("学而时习之，不亦说乎", "为人谋而不忠乎？与朋友交而不信乎？传不习乎？", "慎终追远，民德归厚矣", "不患人之不己知，患不知人也", "温故而知新，可以为师矣", "君子周而不比，小人比而不周", "学而不思则罔，思而不学则殆", "攻乎异端，斯害也已", "事君尽礼，人以为谄也", "唯仁者能好人，能恶人", "放于利而行，多怨", "见贤思齐焉，见不贤而内自省也");
+			var b = new Array("#FFF0F5", "#E6E6FA", "	#B0C4DE", "#E1FFFF", "#FAFAD2", "#FFE4C4","#767676");
+			var c = new Array("12", "14", "16", "18", "20", "22", "24", "26", "28", "30");		
+			var i = document.createElement("span");
+			var t = document.createTextNode(a[a_idx]);			
+			i.appendChild(t);		
+			a_idx = (a_idx + 1) % a.length;
+			b_idx = (b_idx + 1) % b.length;
+			c_idx = (c_idx + 1) % c.length;
+			var x = e.clientX,
+			y = e.clientY;
+			i.style["position"] = "absolute";
+			i.style["z-index"] = "-1";
+			i.style["top"] = y-30+"px";
+			i.style["left"] = x-20+"px";					
+			i.style["font-weight"] = "bold";
+			i.style["font-size"] = c[c_idx]+"px";
+			i.style["color"] = b[b_idx];
+			i.style['opacity'] = "0.4";*/
+
+			/*添加波纹效果*/		 
+			var left = e.pageX;
+			var top = e.pageY;
+			var ii = document.createElement("div");
+			ii.setAttribute("class","dot");  
+			ii.setAttribute("style","top:"+top+"px;"+"left:"+left+"px");
+			document.getElementsByTagName("body")[0].appendChild(ii); 
+			setTimeout(function() {
+				ii.parentNode.removeChild(ii);
+			}, 1500);
+		};
+	}
+</script>
+<!--滚动歌词条-->	
+<script>
+	var text;
+	var len;  
+	setInterval(function(){
+		text = document.getElementsByClassName("innow")[0];
+		len = text.offsetWidth;
+		roll();
+	},23000)
+	
+	function roll(){
+		text.style['transition'] = "all 10s linear";
+		text.style["right"] = len+"px";
+		setTimeout(function(){
+			text.style['transition'] = "none";
+			text.style["right"] = -len+"px";
+		},9990)
+		setTimeout(function(){
+			text.style['transition'] = "all 10s linear";
+			text.style["right"] = "0px";
+		},10010)
+		setTimeout(function(){
+			text.style['transition'] = "none";
+		},19990)
+	}	
+	
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+{
+	"general" : 
+	{
+		"properties" : 
+		{
+			"color1" : 
+			{
+				"order" : 5,
+				"text" : "歌曲文字颜色<br/>(visualization color1)",
+				"type" : "color",
+				"value" : "1 1 1"
+			},
+           	"bwcolor":
+			{
+				"order":999999999999,
+				"text":"波纹颜色<br/>",
+				"type":"color",
+				"value":"1 1 1"
+			},
+			"volumn" : 
+			{
+				"max" : 100,
+				"min" : 0,
+				"order" : 1,
+				"text" : "输入音量<br/>(Alpha)",
+				"type" : "slider",
+				"value" : 90
+			},
+			"opacity":
+			{
+				"max" : 100,
+				"min" : 0,
+				"order" : 3,
+				"text" : "频谱透明度<br/>(Alpha)",
+				"type" : "slider",
+				"value" : 88
+			},
+			"opacity1":
+			{
+				"max" : 100,
+				"min" : 0,
+				"order" : 3,
+				"text" : "静止频谱透明度<br/>(Alpha)",
+				"type" : "slider",
+				"value" : 88
+			},
+			"opacityclock":
+			{
+				"max" : 100,
+				"min" : 0,
+				"order" : 4,
+				"text" : "时钟透明度<br/>(Alpha)",
+				"type" : "slider",
+				"value" : 40
+			},
+			"backImg" : 
+			{
+				"order" : 6,
+				"text" : "背景图<br/>(wallpaper image)",
+				"type" : "file"
+			},
+			"pinpuImg" : 
+			{
+				"order" : 7,
+				"text" : "频谱背景图<br/>(wallpaper image)",
+				"type" : "file"
+			},
+
+			"maodianL":
+			{
+				"max" : 3840,
+				"min" : 0,
+				"order" : 9,
+				"text" : "频谱锚点1<br>",
+				"type" : "slider",
+				"value" : 100
+			},
+			"maodianR":
+			{
+				"max" : 1000,
+				"min" : 0,
+				"order" : 10,
+				"text" : "频谱锚点2<br>",
+				"type" : "slider",
+				"value" : 0
+			},
+			"isRun":
+			{
+				"order":1222,
+				"text":"是否静止可视化<br/>",
+				"type":"bool",
+				"value":"true";
+			},
+
+		}
+
+	},
+	"title" : "my wallpaper",
+	"preview" : "preview.jpg",
+}
