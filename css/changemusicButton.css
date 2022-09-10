@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+.kuang{
+	position: absolute;
+	top:-20px;
+	right:300px;
+	opacity: 0;
+	transition: all .5s;
+}
+.kuang.trans{
+	top:0px;
+	opacity: 1;
+}
+
+.kuang>input{
+	color: #fff;
+	background: transparent;
+	outline: none;	
+	border-radius: 5px;
+	padding:1px
+}
+#file{
+	width:150px;
+}

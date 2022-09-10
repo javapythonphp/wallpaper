@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<link rel="stylesheet" href="assets/css/musicWave_module.css">	
+<link rel="stylesheet" href="assets/css/background_change_module.css">	
+<link rel="stylesheet" href="assets/css/wave_module.css">	
+<link rel="stylesheet" href="assets/css/particleTime_module.css">		
+<script src="plug/js/jquery.min.js"></script>	
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	body{
+		height:100vh;
+		width:100vw;
+		overflow: hidden;
+	}
+	#app{
+		height:100%;
+		width:100%;
+	}
+</style>
+<style>
+	@keyframes wave{
+		from{
+			opacity: 1;
+			box-shadow: 0 0 10px 2px aqua;
+		}
+		to{
+			opacity: 0;
+			box-shadow: 0 0 0px 200px aqua;
+		}
+	}	
+</style>
+<body>
+	
+	<div id="app">
+		
+		<!--audio-->
+		<audio id="musicAudio" src="2.flac" autoplay></audio>
+		<!--audio-->
+
+		<!--背景流模块-->
+		<div class="background_change_module">
+			<button name="flowStop" class="flowStop">停止</button>
+			<img class="changeImage" src="" alt="">
+			<img class="changeImage" src="" alt="">
+		</div>	
+		<!--背景流模块-->
+
+		<!--频谱模块-->
+		<div id="musicWave_module">
+			<img id="musicWave_img" src="1.png" style="display: none" alt="">
+			<canvas id="musicWave"></canvas>
+		</div>
+		<!--频谱模块-->
+
+		<!--粒子时钟-->
+		<div id="particleTime_module">
+			<canvas id="particleTime"></canvas>
+		</div>
+		<!--粒子时钟-->
+	
+	</div>
+	
+	<script src="assets/js/musicWave_module.js"></script>
+	<script src="assets/js/background_change_module.js"></script>	
+	<script src="assets/js/wave_module.js"></script>
+	<script src="assets/js/particleTime_module.js"></script>
+	
+</body>
+</html>

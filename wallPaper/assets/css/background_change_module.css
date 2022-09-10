@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+.background_change_module{
+	height:100%;
+	width:100%;
+	position: absolute;
+	z-index: 99;
+}	
+.background_change_module>.changeImage{
+	position: absolute;
+	height:100%;
+	width:100%;
+	object-fit: cover;
+	position: fixed;
+	opacity: 0;
+	transform: scale(1);
+	transition:transform 4s,opacity 3s linear;
+	z-index: 199;
+}
+.background_change_module>.flowStop{
+	z-index:299;
+}
+.background_change_module>.changeImage.showScale{
+	transform: scale(1.1);
+}
+.background_change_module>.changeImage.showOpacity{
+	opacity:1;
+}

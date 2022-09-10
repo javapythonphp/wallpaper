@@ -1,0 +1,75 @@
+
+
+.text {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+	  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.text, a {
+  color: #f4f4f4;
+  font-weight: 100;
+	  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+	-webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.textTime {
+  fill: #f4f4f4;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  font-size: 3rem;
+  font-weight: 100;
+	-webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.outerRing {
+  fill: none;
+  stroke: rgba(0,0,0,0.9);
+  stroke-width: 2px;
+  stroke-dasharray: 4px;
+  opacity: .5;
+	-webkit-transition: all .5s;
+  transition: all .5s;
+}
+/*圆盘颜色*/
+.primCircle {
+  fill: transparent;
+  stroke: rgba(0,0,0,1);
+  stroke-width: 10px;
+	-webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.secCircle {
+  fill: rgba(255,255,255,0.7);
+  stroke: #252525;
+  stroke-width: 3px;
+	-webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.spike {
+  stroke: #f4f4f4;
+  stroke-width: 2px;
+	-webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.triangle {
+  fill: rgba(20,20,20,0.8);
+	-webkit-transition: all .5s;
+  transition: all .5s;
+}

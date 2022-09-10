@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+.music-right{
+	position: absolute;
+	top:0;
+	bottom:0;
+	width:300px;
+	right:0;
+}
+
+.music-top{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height:200px;
+	background: rgba(0,0,0,0.2);
+	border-radius: 15px;
+}
+

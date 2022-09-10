@@ -1,0 +1,23 @@
+/* CSS Document */
+#backImg1{
+    opacity:1;
+    position:absolute;
+    min-width:1920px;
+	min-height:1080px;
+	height:1080px;
+	width:1920px;
+	object-fit: cover;
+    transition:all 5.5s;
+	z-index:-1002;
+}
+#backImg2{
+    opacity:1;
+    position:absolute;
+    min-width:1920px;
+	min-height:1080px;
+	height:1080px;
+	width:1920px;
+	object-fit: cover;
+    transition:all 5.5s;
+	z-index:-1002;
+}
